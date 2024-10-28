@@ -1,44 +1,46 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
-import { CreateAuthDto } from './dto/create-auth.dto';
+import { CreateAuthDto } from './dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import * as argon from 'argon2';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
-
+    
 @Injectable()
 export class AuthService {
-  constructor(private Prisma: PrismaService) {}
+  constructor(private readonly Prisma: PrismaService) {}
 
   async signup(dto: CreateAuthDto) {
     try {
+      const findUser = await this.Prisma.user.findUnique({
+        where: { email: dto.email },
+      });
+
+      if (findUser) {
+        throw new ForbiddenException('User already exists');
+      }
       const hash = await argon.hash(dto.password);
-      const user = this.Prisma.user.create({
+      const user = await this.Prisma.user.create({
         data: {
           email: dto.email,
-          OrganizationId: '1', // This is hardcoded for now
+          OrganizationId: '671fd5784a6cdf5348552c89', // This is hardcoded for now
           password: hash,
         },
       });
 
-      console.log(user);
       return user;
     } catch (error) {
-      if (error instanceof PrismaClientKnownRequestError) {
-        if (error.code === 'P2002') {
-          throw new ForbiddenException('User already exists');
-        }
-      }
       throw error;
     }
   }
 
   async signin(dto: CreateAuthDto) {
-    const user = this.Prisma.user.findUnique({ where: { email: dto.email } });
+    const user = await this.Prisma.user.findUnique({
+      where: { email: dto.email },
+    });
 
     if (!user) {
       throw new ForbiddenException('User not found');
     }
 
-    const valid = await argon.verify((await user).password, dto.password);
+    const valid = await argon.verify(user.password, dto.password);
 
     if (!valid) {
       throw new ForbiddenException('Invalid password');

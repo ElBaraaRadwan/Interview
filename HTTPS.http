@@ -1,0 +1,49 @@
+### Auth HTTP Requests
+
+### SignUp
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+    "email": "asdf@asdf.com",
+    "password": "yourPassword"
+}
+
+### SignIn
+POST http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+    "email": "asdf@asdf.com",
+    "password": "yourPassword"
+}
+
+
+### Organization HTTP Requests
+
+### Create Organization
+POST http://localhost:3000/organization
+Content-Type: application/json
+
+{
+    "name": "My Organization",
+    "description": "This is my organization"
+}
+
+### Get All Organizations
+GET http://localhost:3000/organization
+
+### Get Organization By Id
+GET http://localhost:3000/organization/671fd5784a6cdf5348552c89
+
+### Update Organization
+PUT http://localhost:3000/organization/671fd5784a6cdf5348552c89
+Content-Type: application/json
+
+{
+    "name": "My Organization 2",
+    "description": "This is my organization 2"
+}
+
+### Delete Organization
+DELETE http://localhost:3000/organization/671fd5784a6cdf5348552c89
