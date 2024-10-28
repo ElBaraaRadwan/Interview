@@ -12,8 +12,6 @@ import { OrganizationService } from './organization.service';
 import { CreateOrganizationDto } from './dto/create-organization.dto';
 import { UpdateOrganizationDto } from './dto/update-organization.dto';
 import { jwtGuard } from 'src/auth/guard';
-import { User } from '@prisma/client';
-import { GetUser } from 'src/auth/decorator';
 
 @UseGuards(jwtGuard)
 @Controller('organization')
