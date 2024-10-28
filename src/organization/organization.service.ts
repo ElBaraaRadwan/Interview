@@ -6,48 +6,102 @@ import { PrismaService } from 'src/prisma/prisma.service';
 @Injectable()
 export class OrganizationService {
   constructor(private readonly Prisma: PrismaService) {}
-  create(dto: CreateOrganizationDto) {
-    return this.Prisma.organization.create({
-      data: {
-        name: dto.name,
-        description: dto.description,
-      },
-    });
+  async create(dto: CreateOrganizationDto) {
+    try {
+      const find = await this.Prisma.organization.findUnique({
+        where: { name: dto.name },
+      });
+
+      if (find) {
+        throw new ForbiddenException('Organization already exists');
+      }
+      const organization = await this.Prisma.organization.create({
+        data: {
+          name: dto.name,
+          description: dto.description,
+        },
+      });
+
+      return {
+        id: organization.id,
+      };
+    } catch (error) {
+      throw error;
+    }
   }
 
-  async invite(
-    id: string,
-    dto: UpdateOrganizationDto,
-    User: { email: string; id: string },
-  ) {
-    const user = await this.Prisma.user.findUnique({
-      where: { email: User.email },
+  async invite(id: string, email: string) {
+    try {
+      const user = await this.Prisma.user.findUnique({
+        where: { email },
+      });
+
+      if (!user) {
+        throw new ForbiddenException('User not found');
+      }
+
+      const organization = await this.Prisma.organization.findUnique({
+        where: { id },
+      });
+
+      if (!organization) {
+        throw new ForbiddenException('Organization not found');
+      }
+
+      await this.Prisma.organization.update({
+        where: { id },
+        data: {
+          members: {
+            connect: {
+              email,
+            },
+          },
+        },
+      });
+
+      return { message: 'User invited' };
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async findAll() {
+    const findAll = await this.Prisma.organization.findMany({
+      include: {
+        members: {
+          select: { email: true, name: true, accessLevel: true },
+        },
+      },
     });
 
-    if (!user) throw new ForbiddenException('user not found');
-    const invite = await this.Prisma.organization.update({
+    return {
+      data: findAll.map((find) => ({
+        id: find.id,
+        name: find.name,
+        description: find.description,
+        members: find.members,
+      })),
+    };
+  }
+
+  async findOne(id: string) {
+    const find = await this.Prisma.organization.findUnique({
       where: { id },
-      data: {
-        members: dto.members
-          ? {
-              connect: dto.members.map((memberId = user.id) => ({
-                id: memberId,
-              })),
-            }
-          : undefined,
+      include: {
+        members: {
+          select: { email: true, name: true, accessLevel: true },
+        },
       },
     });
 
-    if (!invite) throw new ForbiddenException('invite failed');
-    return invite;
-  }
+    if (!find) throw new ForbiddenException('Organization not found');
 
-  findAll() {
-    return this.Prisma.organization.findMany();
-  }
-
-  findOne(id: string) {
-    return this.Prisma.organization.findUnique({ where: { id } });
+    return {
+      id: find.id,
+      name: find.name,
+      description: find.description,
+      members: find.members,
+    };
   }
 
   async update(id: string, dto: UpdateOrganizationDto) {
@@ -73,6 +127,8 @@ export class OrganizationService {
   }
 
   remove(id: string) {
-    return this.Prisma.organization.delete({ where: { id } });
+    this.Prisma.organization.delete({ where: { id } });
+
+    return { message: 'Organization deleted' };
   }
 }

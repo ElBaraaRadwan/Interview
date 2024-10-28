@@ -6,7 +6,8 @@ Content-Type: application/json
 
 {
     "email": "asdf@asdf.com",
-    "password": "yourPassword"
+    "password": "yourPassword",
+    "name": "John Doe"
 }
 
 ### SignIn
@@ -19,26 +20,41 @@ Content-Type: application/json
 }
 
 
+### User HTTP Requests
+
+### Invite User
+POST http://localhost:3000/organization/672017397b9c9b141e32951c/invite
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzIwMTcyNzdiOWM5YjE0MWUzMjk1MWIiLCJlbWFpbCI6ImFzZGZAYXNkZi5jb20iLCJpYXQiOjE3MzAxNTkzMzcsImV4cCI6MTczMDE2MTEzN30.ZVblvkHhWRA0WOhy_jcAFA4rISpA69I-8uuFmgj3o98
+
+{
+    "email": "asdf@asdf.com"
+}
+
+
 ### Organization HTTP Requests
 
 ### Create Organization
 POST http://localhost:3000/organization
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzIwMTcyNzdiOWM5YjE0MWUzMjk1MWIiLCJlbWFpbCI6ImFzZGZAYXNkZi5jb20iLCJpYXQiOjE3MzAxNTgyMDcsImV4cCI6MTczMDE2MDAwN30.Ye_-1RPmjPK0nEgoIlx9Fwva2Z-cQjg7vKiPnrcTNfE
 
 {
-    "name": "My Organization",
-    "description": "This is my organization"
+    "name": "lol Organization",
+    "description": "This is test organization"
 }
 
 ### Get All Organizations
 GET http://localhost:3000/organization
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzIwMTcyNzdiOWM5YjE0MWUzMjk1MWIiLCJlbWFpbCI6ImFzZGZAYXNkZi5jb20iLCJpYXQiOjE3MzAxNTkzMzcsImV4cCI6MTczMDE2MTEzN30.ZVblvkHhWRA0WOhy_jcAFA4rISpA69I-8uuFmgj3o98
 ### Get Organization By Id
-GET http://localhost:3000/organization/671fd5784a6cdf5348552c89
+GET http://localhost:3000/organization/67200f3969b456532a746df2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzIwMTcyNzdiOWM5YjE0MWUzMjk1MWIiLCJlbWFpbCI6ImFzZGZAYXNkZi5jb20iLCJpYXQiOjE3MzAxNTYzMzQsImV4cCI6MTczMDE1ODEzNH0.iw7pjQgNoElYVGjRv8mIVraFN4N-6vYt4R4-UZhBjGc
 
 ### Update Organization
-PUT http://localhost:3000/organization/671fd5784a6cdf5348552c89
+PUT http://localhost:3000/organization/67200f3969b456532a746df2
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzIwMTcyNzdiOWM5YjE0MWUzMjk1MWIiLCJlbWFpbCI6ImFzZGZAYXNkZi5jb20iLCJpYXQiOjE3MzAxNTYzMzQsImV4cCI6MTczMDE1ODEzNH0.iw7pjQgNoElYVGjRv8mIVraFN4N-6vYt4R4-UZhBjGc
 
 {
     "name": "My Organization 2",
@@ -46,4 +62,5 @@ Content-Type: application/json
 }
 
 ### Delete Organization
-DELETE http://localhost:3000/organization/671fd5784a6cdf5348552c89
+DELETE http://localhost:3000/organization/67200f3969b456532a746df2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzIwMTcyNzdiOWM5YjE0MWUzMjk1MWIiLCJlbWFpbCI6ImFzZGZAYXNkZi5jb20iLCJpYXQiOjE3MzAxNTYzMzQsImV4cCI6MTczMDE1ODEzNH0.iw7pjQgNoElYVGjRv8mIVraFN4N-6vYt4R4-UZhBjGc

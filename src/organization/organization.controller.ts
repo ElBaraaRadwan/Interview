@@ -25,13 +25,12 @@ export class OrganizationController {
     return this.organizationService.create(dto);
   }
 
-  @Post('invite')
+  @Post(':id/invite')
   invite(
     @Param('id') id: string,
-    @Body() dto: UpdateOrganizationDto,
-    @GetUser() user: User,
+    @Body('email') email: string,
   ) {
-    return this.organizationService.invite(id, dto, user);
+    return this.organizationService.invite(id, email);
   }
 
   @Get()
