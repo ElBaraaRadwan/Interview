@@ -1,8 +1,21 @@
-import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  Put,
+  UseGuards,
+} from '@nestjs/common';
 import { OrganizationService } from './organization.service';
 import { CreateOrganizationDto } from './dto/create-organization.dto';
 import { UpdateOrganizationDto } from './dto/update-organization.dto';
+import { jwtGuard } from 'src/auth/guard';
+import { User } from '@prisma/client';
+import { GetUser } from 'src/auth/decorator';
 
+@UseGuards(jwtGuard)
 @Controller('organization')
 export class OrganizationController {
   constructor(private readonly organizationService: OrganizationService) {}
@@ -10,6 +23,15 @@ export class OrganizationController {
   @Post()
   create(@Body() dto: CreateOrganizationDto) {
     return this.organizationService.create(dto);
+  }
+
+  @Post('invite')
+  invite(
+    @Param('id') id: string,
+    @Body() dto: UpdateOrganizationDto,
+    @GetUser() user: User,
+  ) {
+    return this.organizationService.invite(id, dto, user);
   }
 
   @Get()

@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
-import { CreateOrganizationDto } from './dto/create-organization.dto';
-import { UpdateOrganizationDto } from './dto/update-organization.dto';
+import { ForbiddenException, Injectable } from '@nestjs/common';
+import { CreateOrganizationDto } from './dto';
+import { UpdateOrganizationDto } from './dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
@@ -11,11 +11,35 @@ export class OrganizationService {
       data: {
         name: dto.name,
         description: dto.description,
-        // members: {
-        //   connect: dto.members.map((memberId) => ({ id: memberId })),
-        // },
       },
     });
+  }
+
+  async invite(
+    id: string,
+    dto: UpdateOrganizationDto,
+    User: { email: string; id: string },
+  ) {
+    const user = await this.Prisma.user.findUnique({
+      where: { email: User.email },
+    });
+
+    if (!user) throw new ForbiddenException('user not found');
+    const invite = await this.Prisma.organization.update({
+      where: { id },
+      data: {
+        members: dto.members
+          ? {
+              connect: dto.members.map((memberId = user.id) => ({
+                id: memberId,
+              })),
+            }
+          : undefined,
+      },
+    });
+
+    if (!invite) throw new ForbiddenException('invite failed');
+    return invite;
   }
 
   findAll() {
@@ -26,17 +50,26 @@ export class OrganizationService {
     return this.Prisma.organization.findUnique({ where: { id } });
   }
 
-  update(id: string, dto: UpdateOrganizationDto) {
-    return this.Prisma.organization.update({
+  async update(id: string, dto: UpdateOrganizationDto) {
+    const Organization = await this.Prisma.organization.findUnique({
+      where: { id },
+    });
+
+    if (!Organization) throw new ForbiddenException('Organization not found');
+
+    const update = await this.Prisma.organization.update({
       where: { id },
       data: {
         name: dto.name,
         description: dto.description,
-        // members: {
-        //   set: dto.members.map((memberId) => ({ id: memberId })),
-        // },
       },
     });
+
+    return {
+      id: update.id,
+      name: update.name,
+      description: update.description,
+    };
   }
 
   remove(id: string) {
