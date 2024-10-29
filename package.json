@@ -14,7 +14,7 @@
     "db:test:up": "docker compose up test -d",
     "db:ps:test": "npx prisma generate && dotenv -e .env.test -- prisma db push",
     "db:test:restart": "yarn db:test:rm && yarn db:test:up && timeout 1 && yarn db:ps:test",
-    "build": "nest build --output public",
+    "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
@@ -44,7 +44,8 @@
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "reflect-metadata": "^0.2.0",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "vercel": "^37.13.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
