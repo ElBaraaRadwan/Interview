@@ -6,10 +6,10 @@ import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
+    AuthModule,
     PrismaModule,
     OrganizationModule,
     ConfigModule.forRoot({ isGlobal: true }),
-    AuthModule,
   ],
 })
 export class AppModule {}

@@ -37,7 +37,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzIwM
 ### Create Organization
 POST http://localhost:3333/organization
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzIwMTcyNzdiOWM5YjE0MWUzMjk1MWIiLCJlbWFpbCI6ImFzZGZAYXNkZi5jb20iLCJpYXQiOjE3MzAxNTgyMDcsImV4cCI6MTczMDE2MDAwN30.Ye_-1RPmjPK0nEgoIlx9Fwva2Z-cQjg7vKiPnrcTNfE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzIwMTcyNzdiOWM5YjE0MWUzMjk1MWIiLCJlbWFpbCI6ImFzZGZAYXNkZi5jb20iLCJpYXQiOjE3MzAyMjY4MjgsImV4cCI6MTczMDIyODYyOH0.apDKCtDtuuw6peCcUxD5vKMRwnrTHCXVIUcQlCHgIjg
 
 {
     "name": "lol Organization",

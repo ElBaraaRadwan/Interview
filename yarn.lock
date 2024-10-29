@@ -478,6 +478,13 @@
     slash "^3.0.0"
     strip-ansi "^6.0.0"
 
+"@jest/create-cache-key-function@^29.7.0":
+  version "29.7.0"
+  resolved "https://registry.yarnpkg.com/@jest/create-cache-key-function/-/create-cache-key-function-29.7.0.tgz#793be38148fab78e65f40ae30c36785f4ad859f0"
+  integrity sha512-4QqS3LY5PBmTRHj9sAg1HLoPzqAI0uOX6wI/TRqHIcOxlFidy6YEmCQJk6FSZjNLGCeubDMfmkWL+qaLKhSGQA==
+  dependencies:
+    "@jest/types" "^29.6.3"
+
 "@jest/environment@^29.7.0":
   version "29.7.0"
   resolved "https://registry.yarnpkg.com/@jest/environment/-/environment-29.7.0.tgz#24d61f54ff1f786f3cd4073b4b94416383baf2a7"
@@ -1113,6 +1120,15 @@
   resolved "https://registry.yarnpkg.com/@swc/counter/-/counter-0.1.3.tgz#cc7463bd02949611c6329596fccd2b0ec782b0e9"
   integrity sha512-e2BR4lsJkkRlKZ/qCHPw9ZaSxc0MVUd7gtbtaB7aMvHeJVYe8sOB8DBZkP2DtISHGSku9sCK6T6cnY0CtXrOCQ==
 
+"@swc/jest@^0.2.36":
+  version "0.2.36"
+  resolved "https://registry.yarnpkg.com/@swc/jest/-/jest-0.2.36.tgz#2797450a30d28b471997a17e901ccad946fe693e"
+  integrity sha512-8X80dp81ugxs4a11z1ka43FPhP+/e+mJNXJSxiNYk8gIX/jPBtY4gQTrKu/KIoco8bzKuPI5lUxjfLiGsfvnlw==
+  dependencies:
+    "@jest/create-cache-key-function" "^29.7.0"
+    "@swc/counter" "^0.1.3"
+    jsonc-parser "^3.2.0"
+
 "@swc/types@^0.1.13":
   version "0.1.13"
   resolved "https://registry.yarnpkg.com/@swc/types/-/types-0.1.13.tgz#441734f8bfa6e9e738f1c68e98be6da282ecc7db"
@@ -1320,12 +1336,12 @@
   dependencies:
     undici-types "~6.19.8"
 
-"@types/node@^20.3.1":
-  version "20.17.1"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.17.1.tgz#2b968e060dfb04b7f9550fe3db5f552721c14566"
-  integrity sha512-j2VlPv1NnwPJbaCNv69FO/1z4lId0QmGvpT41YxitRtWlg96g/j8qcv2RKsLKe2F6OJgyXhupN1Xo17b2m139Q==
+"@types/node@^22.8.4":
+  version "22.8.4"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.8.4.tgz#ab754f7ac52e1fe74174f761c5b03acaf06da0dc"
+  integrity sha512-SpNNxkftTJOPk0oN+y2bIqurEXHTA2AOZ3EJDDKeJ5VzkvvORSvmQXGQarcOzWV1ac7DCaPBEdMDxBsM+d8jWw==
   dependencies:
-    undici-types "~6.19.2"
+    undici-types "~6.19.8"
 
 "@types/qs@*":
   version "6.9.16"
@@ -4011,7 +4027,7 @@ jsonc-parser@3.2.1:
   resolved "https://registry.yarnpkg.com/jsonc-parser/-/jsonc-parser-3.2.1.tgz#031904571ccf929d7670ee8c547545081cb37f1a"
   integrity sha512-AilxAyFOAcK5wA1+LeaySVBrHsGQvUFCDWXKpZjzaL0PqW+xfBOttn8GNtWKFWqneyMZj41MWF9Kl6iPWLwgOA==
 
-jsonc-parser@3.3.1:
+jsonc-parser@3.3.1, jsonc-parser@^3.2.0:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/jsonc-parser/-/jsonc-parser-3.3.1.tgz#f2a524b4f7fd11e3d791e559977ad60b98b798b4"
   integrity sha512-HUgH65KyejrUFPvHFPbqOY0rsFip3Bo5wb4ngvdi1EpCYWUQDC5V+Y7mZws+DLkr4M//zQJoanu1SP+87Dv1oQ==
@@ -5698,7 +5714,7 @@ uid@2.0.2:
   dependencies:
     "@lukeed/csprng" "^1.0.0"
 
-undici-types@~6.19.2, undici-types@~6.19.8:
+undici-types@~6.19.8:
   version "6.19.8"
   resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-6.19.8.tgz#35111c9d1437ab83a7cdc0abae2f26d88eda0a02"
   integrity sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==
