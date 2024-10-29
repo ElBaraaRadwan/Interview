@@ -1,32 +1,18 @@
-version: '3.8'
+version: latest
 
 services:
-  node-app:
+  dev:
     build: .
-    image: node-app
-    environment:
-      - DATABASE_URL=mongodb+srv://bebon:123321@interview.xzgdy.mongodb.net/Test?retryWrites=true&w=majority&appName=Interview?authSource=admin
+    image: mongo:latest
+    restart: always
+    expose:
+      - 8080
     ports:
       - '8080:8080'
-    depends_on:
-      - mongodb
-    volumes:
-      - .:/src
-    networks:
-      - node-network
-
-  mongodb:
-    image: mongo:4Interview
-    ports:
-      - '27017:27017'
-    volumes:
-      - dbdata6:/data/db
-    networks:
-      - node-network
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
 
 volumes:
-  dbdata6:
-
-networks:
-  node-network:
-    driver: bridge
+  mongo_data:

@@ -33,6 +33,7 @@ RUN --mount=type=bind,source=package.json,target=package.json \
 # Create a stage for building the application.
 FROM deps as build
 
+
 # Download additional development dependencies before building, as some projects require
 # "devDependencies" to be installed to build. If you don't need this, remove this step.
 RUN --mount=type=bind,source=package.json,target=package.json \
@@ -66,7 +67,7 @@ COPY --from=build /usr/src/app/. ./.
 
 
 # Expose the port that the application listens on.
-EXPOSE 8080
+EXPOSE 3333
 
 # Run the application.
 CMD yarn start

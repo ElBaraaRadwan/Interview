@@ -1,7 +1,7 @@
 ### Auth HTTP Requests
 
 ### SignUp
-POST http://localhost:3000/auth/signup
+POST http://localhost:3333/auth/signup
 Content-Type: application/json
 
 {
@@ -11,7 +11,7 @@ Content-Type: application/json
 }
 
 ### SignIn
-POST http://localhost:3000/auth/signin
+POST http://localhost:3333/auth/signin
 Content-Type: application/json
 
 {
@@ -23,7 +23,7 @@ Content-Type: application/json
 ### User HTTP Requests
 
 ### Invite User
-POST http://localhost:3000/organization/672017397b9c9b141e32951c/invite
+POST http://localhost:3333/organization/672017397b9c9b141e32951c/invite
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzIwMTcyNzdiOWM5YjE0MWUzMjk1MWIiLCJlbWFpbCI6ImFzZGZAYXNkZi5jb20iLCJpYXQiOjE3MzAxNTkzMzcsImV4cCI6MTczMDE2MTEzN30.ZVblvkHhWRA0WOhy_jcAFA4rISpA69I-8uuFmgj3o98
 
@@ -35,7 +35,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzIwM
 ### Organization HTTP Requests
 
 ### Create Organization
-POST http://localhost:3000/organization
+POST http://localhost:3333/organization
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzIwMTcyNzdiOWM5YjE0MWUzMjk1MWIiLCJlbWFpbCI6ImFzZGZAYXNkZi5jb20iLCJpYXQiOjE3MzAxNTgyMDcsImV4cCI6MTczMDE2MDAwN30.Ye_-1RPmjPK0nEgoIlx9Fwva2Z-cQjg7vKiPnrcTNfE
 
@@ -45,14 +45,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzIwM
 }
 
 ### Get All Organizations
-GET http://localhost:3000/organization
+GET http://localhost:3333/organization
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzIwMTcyNzdiOWM5YjE0MWUzMjk1MWIiLCJlbWFpbCI6ImFzZGZAYXNkZi5jb20iLCJpYXQiOjE3MzAxNTkzMzcsImV4cCI6MTczMDE2MTEzN30.ZVblvkHhWRA0WOhy_jcAFA4rISpA69I-8uuFmgj3o98
 ### Get Organization By Id
-GET http://localhost:3000/organization/67200f3969b456532a746df2
+GET http://localhost:3333/organization/67200f3969b456532a746df2
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzIwMTcyNzdiOWM5YjE0MWUzMjk1MWIiLCJlbWFpbCI6ImFzZGZAYXNkZi5jb20iLCJpYXQiOjE3MzAxNTYzMzQsImV4cCI6MTczMDE1ODEzNH0.iw7pjQgNoElYVGjRv8mIVraFN4N-6vYt4R4-UZhBjGc
 
 ### Update Organization
-PUT http://localhost:3000/organization/67200f3969b456532a746df2
+PUT http://localhost:3333/organization/67200f3969b456532a746df2
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzIwMTcyNzdiOWM5YjE0MWUzMjk1MWIiLCJlbWFpbCI6ImFzZGZAYXNkZi5jb20iLCJpYXQiOjE3MzAxNTYzMzQsImV4cCI6MTczMDE1ODEzNH0.iw7pjQgNoElYVGjRv8mIVraFN4N-6vYt4R4-UZhBjGc
 
@@ -62,5 +62,5 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzIwM
 }
 
 ### Delete Organization
-DELETE http://localhost:3000/organization/67200f3969b456532a746df2
+DELETE http://localhost:3333/organization/67200f3969b456532a746df2
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzIwMTcyNzdiOWM5YjE0MWUzMjk1MWIiLCJlbWFpbCI6ImFzZGZAYXNkZi5jb20iLCJpYXQiOjE3MzAxNTYzMzQsImV4cCI6MTczMDE1ODEzNH0.iw7pjQgNoElYVGjRv8mIVraFN4N-6vYt4R4-UZhBjGc
