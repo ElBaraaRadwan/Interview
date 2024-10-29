@@ -14,7 +14,7 @@
     "db:test:up": "docker compose up test -d",
     "db:ps:test": "npx prisma generate && dotenv -e .env.test -- prisma db push",
     "db:test:restart": "yarn db:test:rm && yarn db:test:up && timeout 1 && yarn db:ps:test",
-    "build": "nest build",
+    "build": "nest build --output public",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
