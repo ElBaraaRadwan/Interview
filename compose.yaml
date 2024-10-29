@@ -5,14 +5,30 @@ services:
     build: .
     image: mongo:latest
     restart: always
-    expose:
-      - 8080
     ports:
       - '8080:8080'
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
       - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
+    networks:
+      - interview
+
+  test:
+    build: .
+    image: mongo:latest
+    restart: always
+    ports:
+      - '8081:8080'
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
+    networks:
+      - interview
 
 volumes:
   mongo_data:
+
+networks:
+  interview:
